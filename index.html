@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Halua Sherra Al-Khalifi</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #3498db; /* Biru langit*/
+            --secondary-color: #2980b9;
+            --bg-light: #f8f9fa; /* Abu-abu Muda */
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background-color: var(--text-dark);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 6rem 2rem 4rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* --- HOME SECTION --- */
+        #home {
+            background-color: var(--white);
+            flex-direction: row;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+        }
+
+        .home-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .home-img img {
+            width: 85%;
+            max-width: 380px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        .home-content {
+            flex: 1;
+        }
+
+        .home-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .home-content .status {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-content p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            background-color: var(--bg-light);
+            width: 100%;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .about-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background-color: var(--bg-light);
+            padding: 0.6rem;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .skill-item:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .edu-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-item .year {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- PROJECT SECTION --- */
+        #project {
+            background-color: var(--white);
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #e3f2fd;
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: var(--bg-light);
+            width: 100%;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-box {
+            background: var(--white);
+            padding: 1.2rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .info-box span:first-child {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .info-box span:last-child {
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                transition: 0.3s;
+                gap: 1.5rem;
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 8rem;
+                gap: 2rem;
+            }
+
+            .home-img img {
+                max-width: 280px;
+            }
+
+            .btn-container {
+                justify-content: center;
+            }
+
+            .about-container, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Portofolio.</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#project" class="nav-link">Project</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="home-content">
+            <h1>Halua sherra al-khalifi</h1>
+            <div class="status">WEB DEVELOPER</div>
+            <p>Halo, saya Halua sherra al-khalifi. Saya adalah siswa SMK YAPIIM INDRAMAYU jurusan Rekayasa Perangkat Lunak yang memiliki minat dalam pengembangan website dan teknologi. Saya senang belajar hal baru serta mengembangkan keterampilan pemrograman melalui berbagai proyek yang saya kerjakan.</p>
+            <div class="btn-container">
+                <a href="#project" class="btn btn-primary">Lihat Project</a>
+                <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+            </div>
+        </div>
+        <div class="home-img">
+            <img src="WhatsApp Image 2026-06-17 at 13.11.40.jpeg" alt="Foto Halua sherra al-khalifi">
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-container">
+            <div class="about-card">
+                <h3>Pendidikan</h3>
+                <div class="edu-item">
+                    <h4>SMK YAPIIM INDRAMAYU</h4>
+                    <div class="year">Sedang Berjalan</div>
+                    <p>Fokus mempelajari konsep dasar pemrograman, pembuatan aplikasi berbasis web dan desktop, serta pengelolaan basis data.</p>
+                </div>
+            </div>
+            <div class="about-card">
+                <h3>Keterampilan</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">CSS</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">PHP</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">Git/GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project">
+        <h2 class="section-title">Project Saya</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="Aplikasi-Penjualan-Kasir-Berbasis-Web-Laravel-1.png" class="project-img">
+                <div class="project-info">
+                    <h3>Website Kasir Sederhana</h3>
+                    <p>Aplikasi web untuk manajemen transaksi penjualan, hitung total belanjaan otomatis, dan cetak struk digital.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Bootstrap</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Lihat Detail</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="download.jpeg" class="project-img">
+                <div class="project-info">
+                    <h3>Sistem Absensi Siswa</h3>
+                    <p>Sistem pencatatan kehadiran siswa secara berkala yang dilengkapi dengan rekapitulasi data bulanan untuk guru.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Lihat Detail</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="Screenshot (8).png" class="project-img">
+                <div class="project-info">
+                    <h3>Website Portofolio Pribadi</h3>
+                    <p>Desain halaman landing responsive untuk menampilkan profil diri, keterampilan utama, dan kumpulan proyek.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Kontak</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-box">
+                    <span>Email</span>
+                    <span>lipayyyistribyeonwooseok@gmail.com</span>
+                </div>
+                <div class="info-box">
+                    <span>WhatsApp</span>
+                    <span>+62 8xx-xxxx-xxxx</span>
+                </div>
+                <div class="info-box">
+                    <span>Instagram</span>
+                    <span>@_lipayyy_</span>
+                </div>
+                <div class="info-box">
+                    <span>GitHub</span>
+                    <span>github.com/lipayyyistribyeonwooseok</span>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Pesan berhasil dikirim!');">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" value="Halua sherra al-khalifi" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="lipayyyistribyeonwooseok@gmail.com" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="major">Jurusan</label>
+                    <input type="text" id="major" value="Rekayasa Perangkat Lunak" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan Anda</label>
+                    <textarea id="message" rows="4" placeholder="Tuliskan pesan kamu di sini..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Halua sherra al-khalifi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Menutup menu ketika link di klik (di tampilan mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Efek Aktif Navigasi Berdasarkan Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
